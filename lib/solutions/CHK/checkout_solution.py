@@ -83,11 +83,13 @@ def checkout(skus):
     if not basket.is_valid():
         return -1
 
+    import ipdb; ipdb.set_trace()
     product_groups = []
     for sku, group in itertools.groupby(basket.products, key=lambda x: x.get_product()[0].get('sku')):
         product_groups.append((sku, len(list(group))))
 
     total = 0
+
     for group in product_groups:
         prd = Product(group[0])
         prd_price = prd.get_product()[0].get('price')
