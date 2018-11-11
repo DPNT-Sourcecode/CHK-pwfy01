@@ -20,3 +20,11 @@ class TestBasket(unittest.TestCase):
     def test_is_not_valid_basket(self):
         basket1 = Basket(self.not_valid_basket_1)
         self.assertFalse(basket1.is_valid())
+
+
+class TestCheckout(unittest.TestCase):
+
+    def setUp(self):
+        self.valid_basket_1 = u''
+        self.valid_basket_1 = u'AAABBB'
+        self.valid_basket_1 = u'AAABBB'
