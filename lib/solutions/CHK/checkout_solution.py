@@ -83,12 +83,6 @@ def checkout(skus):
     if not basket.is_valid():
         return -1
 
-    for sku in skus_list:
-        if Product(sku).is_available():
-            basket.products.append(Product(sku))
-        else:
-            return -1
-
     product_groups = []
     for sku, group in itertools.groupby(basket.products, key=lambda x: x.get_product()[0].get('sku')):
         product_groups.append((sku, len(list(group))))
@@ -102,8 +96,6 @@ def checkout(skus):
             offer_ids = prd.get_product()[0].get('offer_id')
             cart = group[1]
             for offer_id in offer_ids:
-                import ipdb;
-                ipdb.set_trace()
                 offer = Offer(offer_id).get_offer()[0]
                 offer_qnty = offer.get('quantity')
                 price = offer.get('price')
