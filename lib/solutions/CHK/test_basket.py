@@ -35,6 +35,10 @@ class TestCheckout(unittest.TestCase):
         self.valid_basket_8 = u'AAAAAA'
         self.valid_basket_9 = u'BBBB'
         self.valid_basket_10 = u'ABCDCBAABCABBAAA'
+        self.valid_basket_11 = u'EEB'
+        self.valid_basket_12 = u'EEBB'
+        self.valid_basket_13 = u'AAAAA'
+        self.valid_basket_14 = u'AAAAAAAA'
 
     def test_checkout(self):
         self.assertEqual(0, checkout(self.valid_basket_1))
@@ -47,4 +51,8 @@ class TestCheckout(unittest.TestCase):
         self.assertEqual(260, checkout(self.valid_basket_8))
         self.assertEqual(90, checkout(self.valid_basket_9))
         self.assertEqual(505, checkout(self.valid_basket_10))
+        self.assertEqual(80, checkout(self.valid_basket_11))
+        self.assertEqual(110, checkout(self.valid_basket_12))
+        self.assertEqual(200, checkout(self.valid_basket_13))
+        self.assertEqual(330, checkout(self.valid_basket_14))
 

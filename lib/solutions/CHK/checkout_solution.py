@@ -6,7 +6,7 @@ class Product(object):
         {
             "sku": "A",
             "price": 50,
-            "offer_id": [1]
+            "offer_id": [1, 4]
         },
         {
             "sku": "B",
@@ -22,6 +22,11 @@ class Product(object):
             "sku": "D",
             "price": 15,
             "offer_id": []
+        },
+        {
+            "sku": "E",
+            "price": 40,
+            "offer_id": [3]
         }
     ]
 
@@ -57,7 +62,19 @@ class Offer(object):
             "offer_id": 2,
             "quantity": 2,
             "price": 45
-        }
+        },
+        {
+            "offer_id": 3,
+            "quantity": 2,
+            "price": 0,
+            "sku": "B",
+            "sku_quantity": 1
+        },
+        {
+            "offer_id": 4,
+            "quantity": 5,
+            "price": 200
+        },
     ]
 
     def __init__(self, id):
@@ -85,6 +102,23 @@ class Basket(object):
         if all(sku.isalpha() for sku in self.skus) or not self.skus:
             return True
         return False
+
+    def clean(self):
+        applied_offers = []
+        for prod_id in self.skus:
+            product = Product(prod_id).get_product()[0]
+
+            offers = product.get('offer_id')
+            for offer_id in offers:
+                offer = Offer(offer_id).get_offer()[0]
+                if not offer.get('price') and offer_id not in applied_offers:
+                    prd_for_free = offer.get('sku')
+                    prd_qnty = offer.get('quantity')
+                    quo, rem = divmod(self.skus.count(product.get('sku')), prd_qnty)
+                    self.skus = self.skus.replace(prd_for_free, '', quo * offer.get('sku_quantity'))
+                applied_offers.append(offer_id)
+
+        return self.skus
 
 
 def checkout(skus):
