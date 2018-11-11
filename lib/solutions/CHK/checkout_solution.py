@@ -51,10 +51,16 @@ class Offer(object):
         self.id = id
 
     def is_available(self):
-        pass
+        if any(offer.get('offer_id') == self.id for offer in self.offers_list):
+            return True
+        return False
 
     def get_offer(self):
-        pass
+        if self.is_available():
+            for idx, offer in enumerate(self.offers_list):
+                if self.id == offer.get('offer_id'):
+                    return [self.offers_list[idx]]
+        return []
 
 
 class Basket(object):
