@@ -1,6 +1,6 @@
 import unittest
 
-from checkout_solution import Basket
+from checkout_solution import Basket, checkout
 
 
 class TestBasket(unittest.TestCase):
@@ -26,5 +26,12 @@ class TestCheckout(unittest.TestCase):
 
     def setUp(self):
         self.valid_basket_1 = u''
-        self.valid_basket_1 = u'AAABBB'
-        self.valid_basket_1 = u'AAABBB'
+        self.valid_basket_2 = u'AAABBB'
+        self.valid_basket_3 = u'BABA'
+        self.valid_basket_4 = u'AAB'
+
+    def test_checkout(self):
+        self.assertEqual(, checkout(self.valid_basket_1))
+        self.assertEqual(, checkout(self.valid_basket_2))
+        self.assertEqual(, checkout(self.valid_basket_3))
+        self.assertEqual(, checkout(self.valid_basket_4))
