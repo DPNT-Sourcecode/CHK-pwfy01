@@ -26,3 +26,11 @@ class TestProduct(unittest.TestCase):
     def test_product_is_not_available(self):
         product = Product('X')
         self.assertFalse(product.is_available())
+
+    def test_get_available_product_from_list(self):
+        product = Product('A')
+        self.assertEqual(1, len(product.get_product()))
+
+    def test_get_not_available_product_from_list(self):
+        product = Product('X')
+        self.assertEqual(0, len(product.get_product()))
