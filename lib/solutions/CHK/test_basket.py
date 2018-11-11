@@ -31,7 +31,7 @@ class TestCheckout(unittest.TestCase):
         self.valid_basket_4 = u'AAB'
 
     def test_checkout(self):
-        self.assertEqual(, checkout(self.valid_basket_1))
-        self.assertEqual(, checkout(self.valid_basket_2))
-        self.assertEqual(, checkout(self.valid_basket_3))
-        self.assertEqual(, checkout(self.valid_basket_4))
+        self.assertEqual(0, checkout(self.valid_basket_1))
+        self.assertEqual(205, checkout(self.valid_basket_2))
+        self.assertEqual(145, checkout(self.valid_basket_3))
+        self.assertEqual(130, checkout(self.valid_basket_4))
