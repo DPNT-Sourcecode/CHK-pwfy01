@@ -12,6 +12,16 @@ class Product(object):
             "sku": "B",
             "price": 30,
             "offer_id": [2]
+        },
+        {
+            "sku": "C",
+            "price": 20,
+            "offer_id": []
+        },
+        {
+            "sku": "D",
+            "price": 15,
+            "offer_id": []
         }
     ]
 
