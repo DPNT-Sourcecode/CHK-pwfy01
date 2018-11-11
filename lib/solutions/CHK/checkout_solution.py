@@ -83,6 +83,12 @@ def checkout(skus):
     if not basket.is_valid():
         return -1
 
+    for sku in skus_list:
+        if Product(sku).is_available():
+            basket.products.append(Product(sku))
+        else:
+            return -1
+
     product_groups = []
     for sku, group in itertools.groupby(basket.products, key=lambda x: x.get_product()[0].get('sku')):
         product_groups.append((sku, len(list(group))))
@@ -102,7 +108,7 @@ def checkout(skus):
                 if price:
                     quo, rem = divmod(cart, offer_qnty)
                     total += quo * price
-                    if rem == 0:
+                    if quo != 0:
                         cart -= offer_qnty
             total += cart * prd_price
 
