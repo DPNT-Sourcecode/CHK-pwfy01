@@ -83,6 +83,7 @@ def checkout(skus):
     if not basket.is_valid():
         return -1
 
+    import ipdb; ipdb.set_trace()
     for sku in skus_list:
         if Product(sku).is_available():
             basket.products.append(Product(sku))
