@@ -28,7 +28,9 @@ class Product(object):
         return []
 
     def on_offer(self):
-        pass
+        if self.is_available() and self.get_product()[0]['offer_id']:
+            return True
+        return False
 
 
 class Offer(object):

@@ -16,6 +16,11 @@ class TestProduct(unittest.TestCase):
                 "sku": "B",
                 "price": 50,
                 "offer_id": [2]
+            },
+            {
+                "sku": "C",
+                "price": 12,
+                "offer_id": []
             }
         ]
 
@@ -34,3 +39,11 @@ class TestProduct(unittest.TestCase):
     def test_get_not_available_product_from_list(self):
         product = Product('X')
         self.assertEqual(0, len(product.get_product()))
+
+    def test_product_on_offer(self):
+        product = Product('A')
+        self.assertTrue(product.on_offer())
+
+    def test_product_not_on_offer(self):
+        product = Product('C')
+        self.assertFalse(product.on_offer())
