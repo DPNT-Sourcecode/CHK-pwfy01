@@ -69,7 +69,9 @@ class Basket(object):
         self.products = products if products else []
 
     def is_valid(self):
-        pass
+        if all(sku.isalpha() for sku in self.skus) or not self.skus:
+            return True
+        return False
 
 
 def checkout(skus):

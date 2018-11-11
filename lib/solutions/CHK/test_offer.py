@@ -27,3 +27,10 @@ class TestOffer(unittest.TestCase):
         offer = Offer(100)
         self.assertFalse(offer.is_available())
 
+    def test_get_available_offer(self):
+        offer = Offer(1)
+        self.assertEqual(1, len(offer.get_offer()))
+
+    def test_get_not_available_offer(self):
+        offer = Offer(100)
+        self.assertEqual(0, len(offer.get_offer()))
