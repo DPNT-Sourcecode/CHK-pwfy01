@@ -119,7 +119,7 @@ def checkout(skus):
                     quo, rem = divmod(cart, offer_qnty)
                     total += quo * price
                     if quo != 0:
-                        cart -= offer_qnty
+                        cart -= offer_qnty * quo
             total += cart * prd_price
 
         else:
