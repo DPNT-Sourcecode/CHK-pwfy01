@@ -83,7 +83,6 @@ def checkout(skus):
     if not basket.is_valid():
         return -1
 
-    import ipdb; ipdb.set_trace()
     for sku in skus_list:
         if Product(sku).is_available():
             basket.products.append(Product(sku))
@@ -103,14 +102,17 @@ def checkout(skus):
             offer_ids = prd.get_product()[0].get('offer_id')
             cart = group[1]
             for offer_id in offer_ids:
+                import ipdb;
+                ipdb.set_trace()
                 offer = Offer(offer_id).get_offer()[0]
                 offer_qnty = offer.get('quantity')
                 price = offer.get('price')
                 if price:
                     quo, rem = divmod(cart, offer_qnty)
                     total += quo * price
-                    # if rem == 0:
-                    #     cart -= offer_qnty
+                    if rem == 0:
+                        cart -= offer_qnty
+
             total += cart * prd_price
 
         else:
