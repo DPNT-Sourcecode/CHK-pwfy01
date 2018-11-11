@@ -93,3 +93,19 @@ def checkout(skus):
         prd_price = prd.get_product()[0].get('price')
         if prd.on_offer():
             offer_ids = prd.get_product()[0].get('offer_id')
+            cart = group[1]
+            for offer_id in offer_ids:
+                offer = Offer(offer_id).get_offer()[0]
+                offer_qnty = offer.get('quantity')
+                price = offer.get('price')
+                if price:
+                    quo, rem = divmod(cart, offer_qnty)
+                    total += quo * price
+                    if rem == 0:
+                        cart -= offer_qnty
+            total += cart * prd_price
+
+        else:
+            total += group[1] * prd_price
+
+    return total
