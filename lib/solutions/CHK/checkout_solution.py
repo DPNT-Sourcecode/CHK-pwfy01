@@ -10,7 +10,7 @@ class Product(object):
         },
         {
             "sku": "B",
-            "price": 50,
+            "price": 30,
             "offer_id": [2]
         }
     ]
@@ -102,8 +102,8 @@ def checkout(skus):
             offer_ids = prd.get_product()[0].get('offer_id')
             cart = group[1]
             for offer_id in offer_ids:
-                import ipdb;
-                ipdb.set_trace()
+                # import ipdb;
+                # ipdb.set_trace()
                 offer = Offer(offer_id).get_offer()[0]
                 offer_qnty = offer.get('quantity')
                 price = offer.get('price')
@@ -112,7 +112,6 @@ def checkout(skus):
                     total += quo * price
                     if rem == 0:
                         cart -= offer_qnty
-
             total += cart * prd_price
 
         else:
