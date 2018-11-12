@@ -117,12 +117,13 @@ class Basket(object):
 
     def clean(self):
         applied_offers = []
-        for prod_id in self.skus.upper():
+        for prod_id in self.skus:
             if Product(prod_id).is_available():
                 product = Product(prod_id).get_product()[0]
 
                 offers = product.get('offer_id')
                 for offer_id in offers:
+
                     offer = Offer(offer_id).get_offer()[0]
                     if not offer.get('price') and offer_id not in applied_offers:
                         prd_for_free = offer.get('sku')
