@@ -140,7 +140,6 @@ def checkout(skus):
 
     total = 0
 
-    import ipdb; ipdb.set_trace()
     for group in product_groups:
         prd = Product(group[0])
         prd_price = prd.get_product()[0].get('price')
