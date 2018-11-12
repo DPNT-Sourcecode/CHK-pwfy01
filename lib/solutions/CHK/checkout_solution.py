@@ -129,7 +129,8 @@ class Basket(object):
                         prd_for_free = offer.get('sku')
                         prd_qnty = offer.get('quantity')
                         quo, rem = divmod(self.skus.count(product.get('sku')), prd_qnty)
-                        self.skus = self.skus.replace(prd_for_free, '', quo * offer.get('sku_quantity'))
+                        times = 1 if rem == 0 else quo
+                        self.skus = self.skus.replace(prd_for_free, '', times * offer.get('sku_quantity'))
                     applied_offers.append(offer_id)
 
         return self.skus
