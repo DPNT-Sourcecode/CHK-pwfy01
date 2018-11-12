@@ -95,7 +95,7 @@ class Offer(object):
 
 class Basket(object):
     def __init__(self, skus, products=None):
-        self.skus = skus.upper()
+        self.skus = skus
         self.products = products if products else []
 
     def is_valid(self):
