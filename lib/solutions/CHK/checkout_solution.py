@@ -104,21 +104,20 @@ class Basket(object):
         return False
 
     def clean(self):
-        import ipdb;
-        ipdb.set_trace()
         applied_offers = []
         for prod_id in self.skus.upper():
-            product = Product(prod_id).get_product()[0]
+            if Product(prod_id).is_available():
+                product = Product(prod_id).get_product()[0]
 
-            offers = product.get('offer_id')
-            for offer_id in offers:
-                offer = Offer(offer_id).get_offer()[0]
-                if not offer.get('price') and offer_id not in applied_offers:
-                    prd_for_free = offer.get('sku')
-                    prd_qnty = offer.get('quantity')
-                    quo, rem = divmod(self.skus.count(product.get('sku')), prd_qnty)
-                    self.skus = self.skus.replace(prd_for_free, '', quo * offer.get('sku_quantity'))
-                applied_offers.append(offer_id)
+                offers = product.get('offer_id')
+                for offer_id in offers:
+                    offer = Offer(offer_id).get_offer()[0]
+                    if not offer.get('price') and offer_id not in applied_offers:
+                        prd_for_free = offer.get('sku')
+                        prd_qnty = offer.get('quantity')
+                        quo, rem = divmod(self.skus.count(product.get('sku')), prd_qnty)
+                        self.skus = self.skus.replace(prd_for_free, '', quo * offer.get('sku_quantity'))
+                    applied_offers.append(offer_id)
 
         return self.skus
 
