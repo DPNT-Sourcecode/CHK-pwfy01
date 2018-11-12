@@ -25,8 +25,8 @@ class TestBasket(unittest.TestCase):
 class TestCheckout(unittest.TestCase):
 
     def setUp(self):
-        self.valid_basket_1 = u'a'
-        # self.valid_basket_1 = u''
+        self.valid_basket_0 = u'a'
+        self.valid_basket_1 = u''
         self.valid_basket_2 = u'AAABBB'
         self.valid_basket_3 = u'BABA'
         self.valid_basket_4 = u'AAB'
@@ -42,18 +42,19 @@ class TestCheckout(unittest.TestCase):
         self.valid_basket_14 = u'AAAAAAAA'
 
     def test_checkout(self):
+        self.assertEqual(50, checkout(self.valid_basket_0))
         self.assertEqual(0, checkout(self.valid_basket_1))
-        # self.assertEqual(205, checkout(self.valid_basket_2))
-        # self.assertEqual(145, checkout(self.valid_basket_3))
-        # self.assertEqual(130, checkout(self.valid_basket_4))
-        # self.assertEqual(50, checkout(self.valid_basket_5))
-        # self.assertEqual(30, checkout(self.valid_basket_6))
-        # self.assertEqual(20, checkout(self.valid_basket_7))
-        # self.assertEqual(260, checkout(self.valid_basket_8))
-        # self.assertEqual(90, checkout(self.valid_basket_9))
-        # self.assertEqual(505, checkout(self.valid_basket_10))
-        # self.assertEqual(80, checkout(self.valid_basket_11))
-        # self.assertEqual(110, checkout(self.valid_basket_12))
+        self.assertEqual(205, checkout(self.valid_basket_2))
+        self.assertEqual(145, checkout(self.valid_basket_3))
+        self.assertEqual(130, checkout(self.valid_basket_4))
+        self.assertEqual(50, checkout(self.valid_basket_5))
+        self.assertEqual(30, checkout(self.valid_basket_6))
+        self.assertEqual(20, checkout(self.valid_basket_7))
+        self.assertEqual(250, checkout(self.valid_basket_8))
+        self.assertEqual(90, checkout(self.valid_basket_9))
+        self.assertEqual(495, checkout(self.valid_basket_10))
+        self.assertEqual(80, checkout(self.valid_basket_11))
+        self.assertEqual(110, checkout(self.valid_basket_12))
         self.assertEqual(200, checkout(self.valid_basket_13))
-        # self.assertEqual(330, checkout(self.valid_basket_14))
+        self.assertEqual(330, checkout(self.valid_basket_14))
 

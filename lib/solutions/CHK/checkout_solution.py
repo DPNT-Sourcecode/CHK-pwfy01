@@ -105,7 +105,7 @@ class Basket(object):
 
     def clean(self):
         applied_offers = []
-        for prod_id in self.skus:
+        for prod_id in self.skus.upper():
             product = Product(prod_id).get_product()[0]
 
             offers = product.get('offer_id')
@@ -124,6 +124,7 @@ class Basket(object):
 def checkout(skus):
     skus_list = ''.join(sorted(skus))
     basket = Basket(skus_list)
+
     if not basket.is_valid():
         return -1
 
