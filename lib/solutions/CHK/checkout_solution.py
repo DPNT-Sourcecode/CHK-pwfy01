@@ -54,7 +54,7 @@ class Product(object):
 class Offer(object):
     offers_list = [
         {
-            "offer_id": 1,
+            "offer_id": 4,
             "quantity": 3,
             "price": 130
         },
@@ -71,7 +71,7 @@ class Offer(object):
             "sku_quantity": 1
         },
         {
-            "offer_id": 4,
+            "offer_id": 1,
             "quantity": 5,
             "price": 200
         },
