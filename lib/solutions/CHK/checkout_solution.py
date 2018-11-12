@@ -27,6 +27,11 @@ class Product(object):
             "sku": "E",
             "price": 40,
             "offer_id": [3]
+        },
+        {
+            "sku": "F",
+            "price": 10,
+            "offer_id": [5]
         }
     ]
 
@@ -75,6 +80,13 @@ class Offer(object):
             "quantity": 5,
             "price": 200
         },
+        {
+            "offer_id": 5,
+            "quantity": 2,
+            "price": 0,
+            "sku": "F",
+            "sku_quantity": 1
+        }
     ]
 
     def __init__(self, id):
