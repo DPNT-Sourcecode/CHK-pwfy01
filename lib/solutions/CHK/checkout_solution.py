@@ -104,6 +104,8 @@ class Basket(object):
         return False
 
     def clean(self):
+        import ipdb;
+        ipdb.set_trace()
         applied_offers = []
         for prod_id in self.skus.upper():
             product = Product(prod_id).get_product()[0]
@@ -129,6 +131,7 @@ def checkout(skus):
         return -1
 
     new_skus_list = basket.clean()
+
     for sku in new_skus_list:
         if Product(sku).is_available():
             basket.products.append(Product(sku))
