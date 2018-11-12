@@ -127,7 +127,8 @@ def checkout(skus):
     if not basket.is_valid():
         return -1
 
-    for sku in skus_list:
+    new_skus_list = basket.clean()
+    for sku in new_skus_list:
         if Product(sku).is_available():
             basket.products.append(Product(sku))
         else:
